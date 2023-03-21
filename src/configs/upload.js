@@ -1,7 +1,6 @@
 const path = require("path");
 const multer = require("multer");
 const crypto = require("crypto");
-const { request } = require("http");
 
 const TMP_FOLDER = path.resolve(__dirname, "..", "..", "tmp");
 const UPLOADS_FOLDER = path.resolve(TMP_FOLDER, "uploads");
@@ -11,9 +10,9 @@ const MULTER = {
     destination: TMP_FOLDER,
     filename(req, file, callback) {
       const fileHash = crypto.randomBytes(10).toString("hex");
-      const filename = `${fileHash}-${file.originalname}`;
+      const fileName = `${fileHash}-${file.originalname}`;
 
-      return callback(null, filename);
+      return callback(null, fileName);
     },
   }),
 };
